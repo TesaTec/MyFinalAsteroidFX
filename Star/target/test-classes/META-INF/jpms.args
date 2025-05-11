@@ -1,0 +1,4 @@
+--patch-module
+Star=_
+--add-reads
+Star=ALL-UNNAMED
