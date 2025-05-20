@@ -12,14 +12,14 @@ import java.util.Random;
 
 
 public class StarPlugin implements IGamePluginService {
-    private Entity star;
+    Random random = new Random();
+
 
 
     @Override
     public void start(GameData gameData, World world) {
         for(int i = 0; i < 100; i++) {
-            star = createStar();
-            world.addEntity(star);
+            world.addEntity(StarFactory.createStar(random.nextInt(780), random.nextInt(780), 1 ,random.nextInt(181) ));
         }
     }
 
@@ -28,18 +28,5 @@ public class StarPlugin implements IGamePluginService {
 
     }
 
-    public Entity createStar() {
-        Random random = new Random();
-        Entity star = new Star();
 
-        star.setPolygonCoordinates(-1, -1, 1, -1, 1,1, -1, 1);
-        star.setX(random.nextInt(780));
-        star.setY(random.nextInt(780));
-        star.setRotation(random.nextInt(181));
-        star.setEntityColor(Color.YELLOW);
-        star.setLayer(LayerTypes.BACKGROUND);
-
-
-        return star;
-    }
 }

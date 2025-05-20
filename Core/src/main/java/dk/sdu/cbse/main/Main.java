@@ -1,6 +1,8 @@
 package dk.sdu.cbse.main;
 
 
+import dk.sdu.cbse.common.components.GraphicsComponent;
+import dk.sdu.cbse.common.components.TransformComponenet;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.GameKeys;
@@ -76,7 +78,8 @@ public class Main extends Application {
             iGamePlugin.start(gameData, world);
         }
         for (Entity entity : world.getEntities()) {
-            Polygon polygon = new Polygon(entity.getPolygonCoordinates());
+            GraphicsComponent gc = entity.getComponent(GraphicsComponent.class);
+            Polygon polygon = new Polygon(gc.getPolygonCoordinates());
 
             polygons.put(entity, polygon);
             gameWindow.getChildren().add(polygon);
@@ -126,14 +129,22 @@ public class Main extends Application {
 
         List<Entity> entities = new ArrayList<>(world.getEntities());
 
-        entities.sort(Comparator.comparingInt(entity -> entity.getLayer().getValue()));
+        entities.sort(Comparator.comparingInt(entity -> {
+            var graphics = entity.getComponent(GraphicsComponent.class);
+            return graphics != null ? graphics.getLayer().getValue() : Integer.MAX_VALUE;
+        }));
 
         for (Entity entity : entities) {
-            Polygon polygon = new Polygon(entity.getPolygonCoordinates());
-            polygon.setTranslateX(entity.getX());
-            polygon.setTranslateY(entity.getY());
-            polygon.setRotate(entity.getRotation());
-            polygon.setFill(entity.getEntityColor());
+            TransformComponenet transCP = entity.getComponent(TransformComponenet.class);
+            GraphicsComponent graphicsCP = entity.getComponent(GraphicsComponent.class);
+            if(transCP == null || graphicsCP == null) {
+                continue;
+            }
+            Polygon polygon = new Polygon(graphicsCP.getPolygonCoordinates());
+            polygon.setTranslateX(transCP.getX());
+            polygon.setTranslateY(transCP.getY());
+            polygon.setRotate(transCP.getRotation());
+            polygon.setFill(graphicsCP.getEntityColor());
 
             polygons.put(entity, polygon);
 

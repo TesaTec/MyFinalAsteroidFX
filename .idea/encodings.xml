@@ -21,6 +21,10 @@
     <file url="file://$PROJECT_DIR$/Core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Enemy/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Enemy/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/HealthSystem/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/HealthSystem/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Movement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Movement/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Player/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Player/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Star/src/main/java" charset="UTF-8" />

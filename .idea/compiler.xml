@@ -9,15 +9,17 @@
         <module name="Bullet" />
         <module name="Player" />
         <module name="CommonEnemy" />
+        <module name="Movement" />
+        <module name="Collision" />
+        <module name="CommonAsteroid" />
+        <module name="CommonBullet" />
+        <module name="Common" />
         <module name="Asteroid" />
         <module name="Star" />
         <module name="CommonStar" />
-        <module name="Collision" />
         <module name="Enemy" />
-        <module name="CommonAsteroid" />
-        <module name="CommonBullet" />
+        <module name="HealthSystem" />
         <module name="Core" />
-        <module name="Common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

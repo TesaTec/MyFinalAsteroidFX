@@ -1,5 +1,6 @@
 package dk.sdu.cbse;
 
+import dk.sdu.cbse.common.components.GraphicsComponent;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
@@ -16,13 +17,14 @@ public class StarControlSystem implements IEntityProcessingService {
 
         for (Entity star : world.getEntities(Star.class)) {
             Random random = new Random();
+            GraphicsComponent gc = star.getComponent(GraphicsComponent.class);
 
             int color = random.nextInt(3);
 
             if (color == 1) {
-                star.setEntityColor(Color.YELLOW);
+                gc.setEntityColor(Color.YELLOW);
             } else {
-                star.setEntityColor(Color.LIGHTYELLOW);
+                gc.setEntityColor(Color.LIGHTYELLOW);
             }
         }
     }

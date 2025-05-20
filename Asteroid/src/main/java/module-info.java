@@ -7,5 +7,5 @@ module Asteroid {
     requires javafx.graphics;
 
     provides IGamePluginService with dk.sdu.cbse.asteroidControl.AsteroidPlugin;
-    provides IEntityProcessingService with dk.sdu.cbse.asteroidControl.AsteroidControlSystem;
+    provides IEntityProcessingService with dk.sdu.cbse.asteroidControl.AsteroidWrapAround;
 }

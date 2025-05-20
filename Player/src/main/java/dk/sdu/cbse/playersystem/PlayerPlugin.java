@@ -12,22 +12,11 @@ public class PlayerPlugin implements IGamePluginService{
     private Entity player;
     @Override
     public void start(GameData gameData, World world) {
-        player = createPlayerShip(gameData);
+        player = PlayerFactory.createPlayerShip(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2, 10, 90, 3);
+
         world.addEntity(player);
     }
 
-    private Entity createPlayerShip(GameData gameData) {
-        Entity playerShip = new Player();
-        playerShip.setPolygonCoordinates(-15,-10,15,0,-15,10, -5,0);
-        playerShip.setRadius(10);
-        playerShip.setX(gameData.getDisplayWidth()/2);
-        playerShip.setY(gameData.getDisplayHeight()/2);
-        playerShip.setEntityColor(Color.LIGHTBLUE);
-        playerShip.setLayer(LayerTypes.PLAYER);
-        playerShip.setHealth(4);
-
-        return playerShip;
-    }
 
     @Override
     public void stop(GameData gameData, World world) {

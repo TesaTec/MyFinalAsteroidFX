@@ -1,3 +1,4 @@
+dk\sdu\cbse\enemycontrol\EnemyFactory.class
 dk\sdu\cbse\enemycontrol\EnemyPlugin.class
 module-info.class
-dk\sdu\cbse\enemycontrol\EnemyControlSystem.class
+dk\sdu\cbse\enemycontrol\EnemyMovement.class

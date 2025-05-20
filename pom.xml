@@ -19,6 +19,8 @@
       <module>Collision</module>
       <module>CommonEnemy</module>
     <module>Enemy</module>
+      <module>Movement</module>
+      <module>HealthSystem</module>
   </modules>
   <properties>
     <java>java</java>

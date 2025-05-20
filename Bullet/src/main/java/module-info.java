@@ -9,5 +9,5 @@ module Bullet {
 
     provides IGamePluginService with dk.sdu.cbse.bullet.BulletPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.bullet.BulletControlSystem;
-    provides BulletSPI with dk.sdu.cbse.bullet.BulletPlugin;
+    provides BulletSPI with dk.sdu.cbse.bullet.BulletFactory;
 }

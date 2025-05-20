@@ -14,13 +14,16 @@ import java.util.Random;
 
 public class EnemyPlugin implements IGamePluginService{
 
-    private Entity enemy;
+
     @Override
     public void start(GameData gameData, World world) {
+        Random randomSpeed = new Random();
+
         int max = 5;
         for(int i = 0; i < max; i++) {
-            enemy = createEnemy(i);
-            world.addEntity(enemy);
+             world.addEntity(EnemyFactory.createEnemy
+                     (150 * i, 50, 0, 10, (float)randomSpeed.nextDouble(1.5) + 1, 3)
+             );
         }
     }
 
@@ -32,22 +35,5 @@ public class EnemyPlugin implements IGamePluginService{
             }
         }
     }
-        private Entity createEnemy(int iteration) {
-            Entity enemy = new Enemy();
 
-            Random randomSpeed = new Random();
-
-            enemy.setLayer(LayerTypes.ENEMY);
-            enemy.setPolygonCoordinates(-15,-10,15,0,-15,10, -5,0);
-            enemy.setRadius(10);
-
-            enemy.setSpeed(randomSpeed.nextDouble(1.5) + 1);
-            enemy.setEntityColor(Color.RED);
-            enemy.setHealth(3);
-
-            enemy.setX(150 * iteration);
-            enemy.setY(50);
-
-            return enemy;
-        }
 }

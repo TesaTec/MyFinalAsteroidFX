@@ -1,3 +1,4 @@
-module-info.class
 dk\sdu\cbse\bullet\BulletPlugin.class
+dk\sdu\cbse\bullet\BulletFactory.class
+module-info.class
 dk\sdu\cbse\bullet\BulletControlSystem.class

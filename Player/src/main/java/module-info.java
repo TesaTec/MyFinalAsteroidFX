@@ -8,5 +8,5 @@ module Player {
     requires javafx.graphics;
     uses dk.sdu.cbse.common.bullet.BulletSPI;
     provides IGamePluginService with dk.sdu.cbse.playersystem.PlayerPlugin;
-    provides IEntityProcessingService with dk.sdu.cbse.playersystem.PlayerControlSystem;
+    provides IEntityProcessingService with dk.sdu.cbse.playersystem.PlayerMovement;
 }

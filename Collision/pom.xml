@@ -30,6 +30,12 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>dk.sdu.cbse</groupId>
+            <artifactId>HealthSystem</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
