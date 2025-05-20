@@ -18,7 +18,11 @@ import java.util.stream.StreamSupport;
 class ModuleConfig {
 
     public ModuleConfig() {
+    }
 
+    @Bean
+    public Game game() {
+        return new Game(gamePluginServices(), entityProcessingServices(), postEntityProcessingServices());
     }
 
     @Bean
