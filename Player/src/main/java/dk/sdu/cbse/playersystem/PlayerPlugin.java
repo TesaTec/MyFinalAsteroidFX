@@ -2,11 +2,11 @@ package dk.sdu.cbse.playersystem;
 
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
-import dk.sdu.cbse.common.data.LayerTypes;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IGamePluginService;
-import javafx.scene.paint.Color;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PlayerPlugin implements IGamePluginService{
 
     private Entity player;

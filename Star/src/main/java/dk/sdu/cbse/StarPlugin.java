@@ -1,16 +1,14 @@
 package dk.sdu.cbse;
 
-import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
-import dk.sdu.cbse.common.data.LayerTypes;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IGamePluginService;
-import dk.sdu.cbse.common.star.Star;
-import javafx.scene.paint.Color;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 
+@Component
 public class StarPlugin implements IGamePluginService {
     Random random = new Random();
 

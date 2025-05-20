@@ -5,6 +5,9 @@ module Star {
     requires Common;
     requires CommonStar;
     requires javafx.graphics;
+    requires spring.context;
+
+    exports dk.sdu.cbse to spring.beans, spring.context;
 
     provides IGamePluginService with dk.sdu.cbse.StarPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.StarControlSystem;

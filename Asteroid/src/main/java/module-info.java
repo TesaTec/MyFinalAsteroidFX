@@ -5,7 +5,9 @@ module Asteroid {
     requires Common;
     requires CommonAsteroid;
     requires javafx.graphics;
+    requires spring.context;
 
+    exports dk.sdu.cbse.asteroidControl to spring.beans, spring.context;
     provides IGamePluginService with dk.sdu.cbse.asteroidControl.AsteroidPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.asteroidControl.AsteroidWrapAround;
 }

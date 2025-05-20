@@ -1,13 +1,14 @@
 package dk.sdu.cbse.movement;
 
-import dk.sdu.cbse.common.components.AsteroidComponent;
 import dk.sdu.cbse.common.components.MovementComponent;
 import dk.sdu.cbse.common.components.TransformComponenet;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IEntityProcessingService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Movement implements IEntityProcessingService {
 
     public void process(GameData gameData, World world) {

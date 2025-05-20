@@ -17,12 +17,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.stream.Collectors.toList;
 
+
+@Component
 public class Game {
 
     private final GameData gameData = new GameData();
@@ -33,6 +37,7 @@ public class Game {
     private List<IEntityProcessingService> entityProcessingServiceList;
     private List<IPostEntityProcessingService> postEntityProcessingServices;
 
+    @Autowired
     public Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServiceList, List<IPostEntityProcessingService> postEntityProcessingServices) {
         this.gamePluginServices = gamePluginServices;
         this.entityProcessingServiceList = entityProcessingServiceList;

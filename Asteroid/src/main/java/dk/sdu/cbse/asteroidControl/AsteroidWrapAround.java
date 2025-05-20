@@ -6,7 +6,9 @@ import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IEntityProcessingService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AsteroidWrapAround implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {

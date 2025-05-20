@@ -1,17 +1,16 @@
 package dk.sdu.cbse.enemycontrol;
 
 import dk.sdu.cbse.common.data.Entity;
-import dk.sdu.cbse.common.data.LayerTypes;
-import dk.sdu.cbse.common.services.IGamePluginService;
-
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
-
 import dk.sdu.cbse.common.enemy.Enemy;
-import javafx.scene.paint.Color;
+import dk.sdu.cbse.common.services.IGamePluginService;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+
+@Component
 public class EnemyPlugin implements IGamePluginService{
 
 

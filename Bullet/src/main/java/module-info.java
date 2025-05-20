@@ -6,7 +6,9 @@ module Bullet {
     requires Common;
     requires CommonBullet;
     requires javafx.graphics;
+    requires spring.context;
 
+    exports dk.sdu.cbse.bullet to spring.beans, spring.context;
     provides IGamePluginService with dk.sdu.cbse.bullet.BulletPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.bullet.BulletControlSystem;
     provides BulletSPI with dk.sdu.cbse.bullet.BulletFactory;

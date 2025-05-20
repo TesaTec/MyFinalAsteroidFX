@@ -8,6 +8,7 @@ import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IEntityProcessingService;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Random;
@@ -15,6 +16,8 @@ import java.util.ServiceLoader;
 
 import static java.util.stream.Collectors.toList;
 
+
+@Component
 public class EnemyMovement implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
