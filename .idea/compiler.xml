@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Bullet" />
         <module name="Player" />
+        <module name="scoring" />
         <module name="CommonEnemy" />
         <module name="Movement" />
         <module name="Collision" />
@@ -15,6 +16,7 @@
         <module name="CommonBullet" />
         <module name="Common" />
         <module name="Asteroid" />
+        <module name="UI" />
         <module name="Star" />
         <module name="CommonStar" />
         <module name="Enemy" />
@@ -24,6 +26,12 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="MyAsteroidFX" target="9" />
+      <module name="Scoring" target="21" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="scoring" options="-parameters" />
+    </option>
   </component>
 </project>

@@ -2,6 +2,7 @@ package dk.sdu.cbse.main;
 
 import dk.sdu.cbse.common.services.IEntityProcessingService;
 import dk.sdu.cbse.common.services.IGamePluginService;
+import dk.sdu.cbse.common.services.IHUDPluginService;
 import dk.sdu.cbse.common.services.IPostEntityProcessingService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,7 +23,7 @@ class ModuleConfig {
 
     @Bean
     public Game game() {
-        return new Game(gamePluginServices(), entityProcessingServices(), postEntityProcessingServices());
+        return new Game(gamePluginServices(), entityProcessingServices(), postEntityProcessingServices(),hudPluginServices());
     }
 
     @Bean
@@ -38,6 +39,11 @@ class ModuleConfig {
     @Bean
     public List<IPostEntityProcessingService> postEntityProcessingServices() {
         return loadServices(IPostEntityProcessingService.class);
+    }
+
+    @Bean
+    public List<IHUDPluginService> hudPluginServices() {
+        return loadServices(IHUDPluginService.class);
     }
 
     private <T> List<T> loadServices(Class<T> serviceClass) {

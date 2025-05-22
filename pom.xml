@@ -21,6 +21,8 @@
     <module>Enemy</module>
       <module>Movement</module>
       <module>HealthSystem</module>
+    <module>Scoring</module>
+    <module>UI</module>
   </modules>
   <properties>
     <java>java</java>

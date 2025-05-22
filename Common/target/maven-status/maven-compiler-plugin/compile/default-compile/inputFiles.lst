@@ -10,11 +10,13 @@ C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroi
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\data\GameKeys.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\services\IEntityProcessingService.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\AsteroidComponent.java
+C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\services\IHUDPluginService.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\AttackComponent.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\BackgroundComponent.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\GraphicsComponent.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\services\IPostEntityProcessingService.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\BulletComponent.java
+C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\REST\ScoreService.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\SplitterComponent.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\CollisionComponent.java
 C:\Users\magnu\Desktop\Skole\Fjerde Semester\Komponentbaseret\Øvelser\MyAsteroidsFX\MyFinalAsteroidFX\Common\src\main\java\dk\sdu\cbse\common\components\EnemyComponent.java

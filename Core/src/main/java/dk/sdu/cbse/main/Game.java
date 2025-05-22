@@ -8,11 +8,13 @@ import dk.sdu.cbse.common.data.GameKeys;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IEntityProcessingService;
 import dk.sdu.cbse.common.services.IGamePluginService;
+import dk.sdu.cbse.common.services.IHUDPluginService;
 import dk.sdu.cbse.common.services.IPostEntityProcessingService;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
@@ -33,30 +35,38 @@ public class Game {
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
+    private final Pane uiWindow = new Pane();
+    private final StackPane root = new StackPane();
     private final List<IGamePluginService> gamePluginServices;
     private final List<IEntityProcessingService> entityProcessingServices;
     private final List<IPostEntityProcessingService> postEntityProcessingServices;
+    private final List<IHUDPluginService> hudPluginServices;
 
 
     @Autowired
-    public Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServiceList, List<IPostEntityProcessingService> postEntityProcessingServices){
+    public Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServiceList, List<IPostEntityProcessingService> postEntityProcessingServices, List<IHUDPluginService> hudPluginServices){
         this.gamePluginServices = gamePluginServices;
         this.entityProcessingServices = entityProcessingServiceList;
         this.postEntityProcessingServices = postEntityProcessingServices;
+        this.hudPluginServices = hudPluginServices;
     }
 
     public void start(Stage window) throws Exception {
-        Text text = new Text(10, 20, "Destroyed asteroids: 0");
-        gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        gameWindow.getChildren().add(text);
 
-        Scene scene = new Scene(gameWindow);
+        gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
+
+        root.getChildren().addAll(gameWindow, uiWindow);
+        Scene scene = new Scene(root);
         setupInput(scene);
 
 
         // Lookup all Game Plugins using ServiceLoader
         for (IGamePluginService iGamePlugin : getPluginServices()) {
             iGamePlugin.start(gameData, world);
+        }
+
+        for(IHUDPluginService iHudPlugin: getHudPluginServices()) {
+            iHudPlugin.setupHUD(uiWindow, gameData);
         }
         for (Entity entity : world.getEntities()) {
             GraphicsComponent gc = entity.getComponent(GraphicsComponent.class);
@@ -65,6 +75,7 @@ public class Game {
             polygons.put(entity, polygon);
             gameWindow.getChildren().add(polygon);
         }
+
         scene.setFill(Color.BLACK);
         window.setScene(scene);
         window.setTitle("ASTEROIDS");
@@ -89,6 +100,10 @@ public class Game {
         }
         for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
             postEntityProcessorService.process(gameData, world);
+        }
+
+        for( IHUDPluginService hudPluginService : getHudPluginServices()) {
+            hudPluginService.updateHUD(gameData);
         }
     }
 
@@ -179,6 +194,7 @@ public class Game {
         return ServiceLoader.load(IPostEntityProcessingService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
-
-
+    private Collection<? extends IHUDPluginService> getHudPluginServices() {
+        return this.hudPluginServices;
+    }
 }
