@@ -1,7 +1,9 @@
 package dk.sdu.cbse.health;
 
 import dk.sdu.cbse.common.REST.ScoreService;
+import dk.sdu.cbse.common.components.AsteroidComponent;
 import dk.sdu.cbse.common.components.CollisionComponent;
+import dk.sdu.cbse.common.components.EnemyComponent;
 import dk.sdu.cbse.common.components.HealthComponent;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
@@ -18,8 +20,6 @@ public class HealthSystem implements IPostEntityProcessingService {
     ScoreService scoreService = new ScoreService("http://localhost:8080");
     @Override
     public void process(GameData gameData, World world) {
-        List<Entity> toRemove = new ArrayList<>();
-
         for (Entity entity : world.getEntities()) {
             CollisionComponent collisionCP = entity.getComponent(CollisionComponent.class);
             HealthComponent healthCP = entity.getComponent(HealthComponent.class);
@@ -33,14 +33,14 @@ public class HealthSystem implements IPostEntityProcessingService {
             }
 
             if (healthCP.getHealth() <= 0) {
-                toRemove.add(entity);
+                if(entity.hasComponent(EnemyComponent.class) || entity.hasComponent(AsteroidComponent.class)) {
+                    scoreService.addScore(1);
+
+                }
+                    healthCP.setAlive(false);
             }
         }
 
-        for (Entity e : toRemove) {
-            scoreService.addScore(1);
-            world.removeEntity(e);
-        }
     }
 
 }

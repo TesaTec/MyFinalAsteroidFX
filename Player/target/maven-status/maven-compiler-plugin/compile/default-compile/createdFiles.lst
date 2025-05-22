@@ -1,4 +1,5 @@
 dk\sdu\cbse\playersystem\PlayerMovement.class
+dk\sdu\cbse\playersystem\PlayerPostProcessing.class
 module-info.class
 dk\sdu\cbse\playersystem\Player.class
 dk\sdu\cbse\playersystem\PlayerPlugin.class

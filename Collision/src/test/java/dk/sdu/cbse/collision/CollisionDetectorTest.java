@@ -8,17 +8,17 @@ import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.LayerTypes;
 import dk.sdu.cbse.common.data.World;
-import dk.sdu.cbse.health.HealthSystem;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CollisionDetectorTest {
 
     private CollisionDetector collisionDetector;
-    private HealthSystem healthSystem;
     private GameData gameData;
     private World world;
 
@@ -27,11 +27,10 @@ public class CollisionDetectorTest {
         collisionDetector = new CollisionDetector();
         gameData = new GameData();
         world = new World();
-        healthSystem = new HealthSystem();
     }
 
     @Test
-    public void testEntitiesCollideAndAreRemoved() {
+    public void testEntitiesCollide() {
         Entity e1 = new Entity();
         e1.addComponent(new TransformComponenet(100,100, 0, 5));
         e1.addComponent(new GraphicsComponent(LayerTypes.PLAYER, Color.LIGHTBLUE, -15,-10,15,0,-15,10, -5,0));
@@ -50,15 +49,11 @@ public class CollisionDetectorTest {
         world.addEntity(e2);
 
         collisionDetector.process(gameData, world);
-        healthSystem.process(gameData, world);
-
-        System.out.println(e2.getComponent(HealthComponent.class).getHealth());
-        System.out.println(e1.getComponent(HealthComponent.class).getHealth());
 
 
         // Entities should be removed after collision
-        assertFalse(world.getEntities().contains(e1));
-        assertFalse(world.getEntities().contains(e2));
+        assertTrue(e1.getComponent(CollisionComponent.class).isCollided());
+        assertTrue(e2.getComponent(CollisionComponent.class).isCollided());
     }
 
     @Test
@@ -82,12 +77,11 @@ public class CollisionDetectorTest {
         world.addEntity(e2);
 
         collisionDetector.process(gameData, world);
-        healthSystem.process(gameData, world);
 
 
-        // Entities should remain
-        assertTrue(world.getEntities().contains(e1));
-        assertTrue(world.getEntities().contains(e2));
+        // Entities should not collide
+        assertFalse(e1.getComponent(CollisionComponent.class).isCollided());
+        assertFalse(e2.getComponent(CollisionComponent.class).isCollided());
     }
 
     @Test
@@ -109,12 +103,11 @@ public class CollisionDetectorTest {
         world.addEntity(e2);
 
         collisionDetector.process(gameData, world);
-        healthSystem.process(gameData, world);
 
 
         // No collision should be detected
-        assertTrue(world.getEntities().contains(e1));
-        assertTrue(world.getEntities().contains(e2));
+        assertFalse(e1.getComponent(CollisionComponent.class).isCollided());
+        assertFalse(e2.getComponent(CollisionComponent.class).isCollided());
     }
 
     @Test
@@ -139,12 +132,11 @@ public class CollisionDetectorTest {
         world.addEntity(e2);
 
         collisionDetector.process(gameData, world);
-        healthSystem.process(gameData, world);
 
 
         // No collision should be detected
-        assertTrue(world.getEntities().contains(e1));
-        assertTrue(world.getEntities().contains(e2));
+        assertFalse(e1.getComponent(CollisionComponent.class).isCollided());
+        assertFalse(e2.getComponent(CollisionComponent.class).isCollided());
     }
 
 }
