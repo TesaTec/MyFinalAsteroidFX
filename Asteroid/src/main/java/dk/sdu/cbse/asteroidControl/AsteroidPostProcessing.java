@@ -2,6 +2,7 @@ package dk.sdu.cbse.asteroidControl;
 
 import dk.sdu.cbse.common.components.AsteroidComponent;
 import dk.sdu.cbse.common.components.HealthComponent;
+import dk.sdu.cbse.common.components.SplitterComponent;
 import dk.sdu.cbse.common.components.TransformComponenet;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
@@ -21,23 +22,27 @@ public class AsteroidPostProcessing implements IPostEntityProcessingService {
             HealthComponent healthCP = entity.getComponent(HealthComponent.class);
 
             if(!healthCP.getAlive()) {
-                int pieces = 2;
-                if(entity.getComponent(TransformComponenet.class).getSize() >= 8) {
-                    if(entity.getComponent(TransformComponenet.class).getSize() >= 12) {
-                        pieces = 3;
-                    }
-                    split(entity, world, pieces);
+                if(entity.hasComponent(SplitterComponent.class)) {
+                    split(entity, world);
                 }
                 world.removeEntity(entity);
             }
         }
     }
 
-    private void split(Entity original, World world, int pieces) {
+    private void split(Entity original, World world) {
         TransformComponenet transCP = original.getComponent(TransformComponenet.class);
+        SplitterComponent splitCP = original.getComponent(SplitterComponent.class);
 
-        for(int i = 0; i < pieces; i++) {
-            Entity asteroidPiece = AsteroidFactory.createAsteroid(transCP.getX(), transCP.getY(), transCP.getSize()/2, transCP.getRotation()/2 * pieces, 1.25f, 1);
+        for(int i = 0; i < splitCP.getPieces(); i++) {
+            Entity asteroidPiece = AsteroidFactory.createAsteroid(
+                    transCP.getX(),
+                    transCP.getY(),
+                    transCP.getSize()/2,
+                    transCP.getRotation() * 180 + (360f / splitCP.getPieces()) * i,
+                    1.25f,
+                    1,
+                    0);
             world.addEntity(asteroidPiece);
         }
     }

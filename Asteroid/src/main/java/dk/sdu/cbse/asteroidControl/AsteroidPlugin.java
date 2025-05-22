@@ -1,6 +1,7 @@
 package dk.sdu.cbse.asteroidControl;
 
 import dk.sdu.cbse.common.Asteroid;
+import dk.sdu.cbse.common.components.TransformComponenet;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
@@ -25,9 +26,18 @@ public class AsteroidPlugin implements IGamePluginService {
             float speed = rand.nextFloat() * 2 + 0.5f;
             float rotation = rand.nextFloat() * 360;
             int size = rand.nextInt(10) + 5;
+            int pieces;
+
+            if(size >= 12) {
+                pieces = 3;
+            } else if(size >= 8){
+                pieces = 2;
+            } else {
+                pieces = 0;
+            }
             int health = 2;
 
-            world.addEntity(AsteroidFactory.createAsteroid(x, y, size, rotation, speed, health));
+            world.addEntity(AsteroidFactory.createAsteroid(x, y, size, rotation, speed, health, pieces));
 
         }
     }
