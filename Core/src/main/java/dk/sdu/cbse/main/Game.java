@@ -37,19 +37,22 @@ public class Game {
     private final Pane gameWindow = new Pane();
     private final Pane uiWindow = new Pane();
     private final StackPane root = new StackPane();
-    private final List<IGamePluginService> gamePluginServices;
-    private final List<IEntityProcessingService> entityProcessingServices;
-    private final List<IPostEntityProcessingService> postEntityProcessingServices;
-    private final List<IHUDPluginService> hudPluginServices;
-
 
     @Autowired
-    public Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServiceList, List<IPostEntityProcessingService> postEntityProcessingServices, List<IHUDPluginService> hudPluginServices){
-        this.gamePluginServices = gamePluginServices;
-        this.entityProcessingServices = entityProcessingServiceList;
-        this.postEntityProcessingServices = postEntityProcessingServices;
-        this.hudPluginServices = hudPluginServices;
+    private  List<IGamePluginService> gamePluginServices;
+
+    @Autowired
+    private  List<IEntityProcessingService> entityProcessingServices;
+
+    @Autowired
+    private  List<IPostEntityProcessingService> postEntityProcessingServices;
+
+    @Autowired
+    private  List<IHUDPluginService> hudPluginServices;
+
+    public Game() {
     }
+
 
     public void start(Stage window) throws Exception {
 
@@ -61,11 +64,11 @@ public class Game {
 
 
         // Lookup all Game Plugins using ServiceLoader
-        for (IGamePluginService iGamePlugin : getPluginServices()) {
+        for (IGamePluginService iGamePlugin : gamePluginServices) {
             iGamePlugin.start(gameData, world);
         }
 
-        for(IHUDPluginService iHudPlugin: getHudPluginServices()) {
+        for(IHUDPluginService iHudPlugin: hudPluginServices) {
             iHudPlugin.setupHUD(uiWindow, gameData);
         }
         for (Entity entity : world.getEntities()) {
@@ -95,14 +98,14 @@ public class Game {
     }
 
     private void update() {
-        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
+        for (IEntityProcessingService entityProcessorService : entityProcessingServices) {
             entityProcessorService.process(gameData, world);
         }
-        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
+        for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessingServices) {
             postEntityProcessorService.process(gameData, world);
         }
 
-        for( IHUDPluginService hudPluginService : getHudPluginServices()) {
+        for( IHUDPluginService hudPluginService : hudPluginServices) {
             hudPluginService.updateHUD(gameData);
         }
     }
@@ -182,19 +185,6 @@ public class Game {
 
         });
     }
-    private Collection<? extends IGamePluginService> getPluginServices() {
-        return ServiceLoader.load(IGamePluginService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
-    }
 
-    private Collection<? extends IEntityProcessingService> getEntityProcessingServices() {
-        return ServiceLoader.load(IEntityProcessingService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
-    }
 
-    private Collection<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
-        return ServiceLoader.load(IPostEntityProcessingService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
-    }
-
-    private Collection<? extends IHUDPluginService> getHudPluginServices() {
-        return this.hudPluginServices;
-    }
 }

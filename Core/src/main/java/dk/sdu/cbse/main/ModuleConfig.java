@@ -15,7 +15,6 @@ import java.util.stream.StreamSupport;
 
 
 @Configuration
-@ComponentScan(basePackages = "dk.sdu.cbse")
 class ModuleConfig {
 
     public ModuleConfig() {
@@ -23,7 +22,7 @@ class ModuleConfig {
 
     @Bean
     public Game game() {
-        return new Game(gamePluginServices(), entityProcessingServices(), postEntityProcessingServices(),hudPluginServices());
+        return new Game();
     }
 
     @Bean

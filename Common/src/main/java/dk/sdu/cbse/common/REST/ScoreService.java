@@ -10,10 +10,13 @@ public class ScoreService {
     private HttpClient client;
     private String urlToScore;
 
+
     public ScoreService(String scoreRetrieverURL) {
         this.client = HttpClient.newHttpClient();
         this.urlToScore = scoreRetrieverURL;
     }
+
+
 
     public int getScore() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(urlToScore + "/getScore")).GET().build();
