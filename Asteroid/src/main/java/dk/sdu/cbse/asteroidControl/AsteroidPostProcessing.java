@@ -12,7 +12,6 @@ import dk.sdu.cbse.common.services.IPostEntityProcessingService;
 import java.util.Random;
 
 public class AsteroidPostProcessing implements IPostEntityProcessingService {
-    Random random = new Random();
     @Override
     public void process(GameData gameData, World world) {
         for (Entity entity: world.getEntities()) {
