@@ -1,0 +1,4 @@
+--patch-module
+ScoreService=_
+--add-reads
+ScoreService=ALL-UNNAMED

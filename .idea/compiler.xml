@@ -13,13 +13,14 @@
         <module name="Movement" />
         <module name="Collision" />
         <module name="CommonAsteroid" />
-        <module name="CommonBullet" />
+        <module name="ScoreService" />
         <module name="Common" />
         <module name="Asteroid" />
         <module name="UI" />
         <module name="Star" />
         <module name="CommonStar" />
         <module name="Enemy" />
+        <module name="CommonScore" />
         <module name="HealthSystem" />
         <module name="Core" />
       </profile>

@@ -4,7 +4,6 @@ import dk.sdu.cbse.common.services.IGamePluginService;
 module Star {
     requires Common;
     requires CommonStar;
-    requires javafx.graphics;
     requires spring.context;
 
     exports dk.sdu.cbse to spring.beans, spring.context;

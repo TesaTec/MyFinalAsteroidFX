@@ -6,7 +6,6 @@ module Player {
     exports dk.sdu.cbse.playersystem;
     requires Common;
     requires CommonBullet;
-    requires javafx.graphics;
     requires spring.context;
     uses dk.sdu.cbse.common.bullet.BulletSPI;
     provides IGamePluginService with dk.sdu.cbse.playersystem.PlayerPlugin;

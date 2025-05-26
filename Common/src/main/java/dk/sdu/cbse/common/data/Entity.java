@@ -3,9 +3,7 @@ package dk.sdu.cbse.common.data;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
-import javafx.scene.paint.Color;
 
 
 public class Entity implements Serializable {

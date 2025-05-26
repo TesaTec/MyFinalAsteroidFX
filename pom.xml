@@ -23,6 +23,8 @@
       <module>HealthSystem</module>
     <module>Scoring</module>
     <module>UI</module>
+      <module>ScoreService</module>
+    <module>CommonScore</module>
   </modules>
   <properties>
     <java>java</java>
@@ -200,6 +202,17 @@
                       <type>jar</type>
                     </artifactItem>
                   </artifactItems>
+                  <outputDirectory>../mods-mvn</outputDirectory>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy-dependencies</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <includeScope>runtime</includeScope>
                   <outputDirectory>../mods-mvn</outputDirectory>
                 </configuration>
               </execution>

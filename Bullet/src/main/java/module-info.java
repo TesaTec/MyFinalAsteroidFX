@@ -6,7 +6,6 @@ import dk.sdu.cbse.common.services.IPostEntityProcessingService;
 module Bullet {
     requires Common;
     requires CommonBullet;
-    requires javafx.graphics;
     requires spring.context;
 
     exports dk.sdu.cbse.bullet to spring.beans, spring.context;

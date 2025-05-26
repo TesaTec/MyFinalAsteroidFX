@@ -8,7 +8,6 @@ module Enemy {
     requires CommonBullet;
 
     requires CommonEnemy;
-    requires javafx.graphics;
     requires spring.context;
 
     exports dk.sdu.cbse.enemycontrol to spring.beans, spring.context;

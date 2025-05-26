@@ -10,7 +10,8 @@
     </parent>
 
     <artifactId>CommonBullet</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+
 
 
     <properties>

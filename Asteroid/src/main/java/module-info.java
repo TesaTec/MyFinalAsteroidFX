@@ -5,7 +5,6 @@ import dk.sdu.cbse.common.services.IPostEntityProcessingService;
 module Asteroid {
     requires Common;
     requires CommonAsteroid;
-    requires javafx.graphics;
     requires spring.context;
 
     exports dk.sdu.cbse.asteroidControl to spring.beans, spring.context;

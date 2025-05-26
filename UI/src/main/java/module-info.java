@@ -2,13 +2,17 @@ import dk.sdu.cbse.common.services.IHUDPluginService;
 
 module UI {
     requires Common;
-    requires javafx.graphics;
     requires javafx.controls;
 
     requires spring.context;
     requires spring.beans;
 
     requires java.net.http;
+
+    requires CommonScore;
+
+    uses dk.sdu.cbse.common.score.ScoreSPI;
+
 
     exports dk.sdu.cbse.UI.Score;
     opens dk.sdu.cbse.UI.Score to spring.core, spring.beans, spring.context;
