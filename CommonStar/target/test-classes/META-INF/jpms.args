@@ -1,4 +1,0 @@
---patch-module
-CommonStar=_
---add-reads
-CommonStar=ALL-UNNAMED

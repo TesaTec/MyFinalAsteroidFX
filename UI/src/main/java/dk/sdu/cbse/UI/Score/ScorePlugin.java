@@ -1,24 +1,25 @@
 package dk.sdu.cbse.UI.Score;
 
-import dk.sdu.cbse.common.REST.ScoreService;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.services.IHUDPluginService;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import dk.sdu.cbse.common.scoring.ScoringSPI;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import java.util.Collection;
+import java.util.ServiceLoader;
+
+import static java.util.stream.Collectors.toList;
 
 
 @Component
 public class ScorePlugin implements IHUDPluginService {
 
     private Text scoreText = new Text();
-    private ScoreService scoreService;
     @Override
     public void setupHUD(Pane window, GameData gameData) {
-         scoreService = new ScoreService("http://localhost:8080");
         scoreText.setX(20);
         scoreText.setY(20);
         scoreText.setStyle("-fx-font: 18 arial;");
@@ -30,17 +31,15 @@ public class ScorePlugin implements IHUDPluginService {
 
     @Override
     public void updateHUD(GameData gameData) {
-        if(scoreService == null) {
-            scoreService = new ScoreService("http://localhost:8080");
-        }
-        try {
-            int score = scoreService.getScore();
-            scoreText.setText("Score: " + score);
-            System.out.println("SCORE FROM SERVER: " + score);
+        int score = getScoreSPI().stream()
+                .findFirst()
+                .map(ScoringSPI::getScore)
+                .orElse(0);
+       scoreText.setText("Score: " + score);
+        System.out.println("This is the score from the server: " + score);
+    }
 
-
-        } catch (IOException | InterruptedException e) {
-            System.out.println("an error occurred during the receiving of the score");
-        }
+    private Collection<? extends ScoringSPI> getScoreSPI() {
+        return ServiceLoader.load(ScoringSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 }

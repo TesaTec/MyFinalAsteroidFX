@@ -17,7 +17,6 @@ dk\sdu\cbse\common\services\IEntityProcessingService.class
 dk\sdu\cbse\common\services\IPostEntityProcessingService.class
 dk\sdu\cbse\common\components\AsteroidComponent.class
 dk\sdu\cbse\common\components\BackgroundComponent.class
-dk\sdu\cbse\common\REST\ScoreService.class
 dk\sdu\cbse\common\components\MovementComponent.class
 dk\sdu\cbse\common\components\CollisionComponent.class
 dk\sdu\cbse\common\data\LayerTypes.class

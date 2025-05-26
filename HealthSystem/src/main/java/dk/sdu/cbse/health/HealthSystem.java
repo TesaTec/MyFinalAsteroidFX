@@ -1,6 +1,5 @@
 package dk.sdu.cbse.health;
 
-import dk.sdu.cbse.common.REST.ScoreService;
 import dk.sdu.cbse.common.components.AsteroidComponent;
 import dk.sdu.cbse.common.components.CollisionComponent;
 import dk.sdu.cbse.common.components.EnemyComponent;
@@ -8,16 +7,17 @@ import dk.sdu.cbse.common.components.HealthComponent;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
+import dk.sdu.cbse.common.scoring.ScoringSPI;
 import dk.sdu.cbse.common.services.IPostEntityProcessingService;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.ServiceLoader;
+
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class HealthSystem implements IPostEntityProcessingService {
-
-    ScoreService scoreService = new ScoreService("http://localhost:8080");
     @Override
     public void process(GameData gameData, World world) {
         for (Entity entity : world.getEntities()) {
@@ -33,14 +33,17 @@ public class HealthSystem implements IPostEntityProcessingService {
             }
 
             if (healthCP.getHealth() <= 0) {
-                if(entity.hasComponent(EnemyComponent.class) || entity.hasComponent(AsteroidComponent.class)) {
-                    scoreService.addScore(1);
+              if(entity.hasComponent(EnemyComponent.class) || entity.hasComponent(AsteroidComponent.class)) {
+                  getScoreSPI().stream().findFirst().ifPresent(spi -> spi.setScore(1));
 
                 }
                     healthCP.setAlive(false);
             }
         }
 
+    }
+    private Collection<? extends ScoringSPI> getScoreSPI() {
+        return ServiceLoader.load(ScoringSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
 }
