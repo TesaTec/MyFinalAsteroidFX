@@ -10,13 +10,24 @@ public class ScoringService implements ScoringSPI {
     String url = "http://localhost:8080";
     @Override
     public int getScore() {
-        String score = restTemplate.getForObject(url + "/getScore", String.class);
-        assert score != null;
+        String score = "0";
+        try {
+             score = restTemplate.getForObject(url + "/getScore", String.class);
+            assert score != null;
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return Integer.parseInt(score);
     }
 
     @Override
     public void setScore(int score) {
-        restTemplate.postForObject(url + "/score?score=" + score, null, String.class);
+        try {
+            restTemplate.postForObject(url + "/score?score=" + score, null, String.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
