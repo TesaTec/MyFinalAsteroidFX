@@ -17,9 +17,9 @@ public class CollisionDetector implements IPostEntityProcessingService{
     public void process(GameData gameData, World world) {
 
         for (Entity e : world.getEntities()) {
-            CollisionComponent cc = e.getComponent(CollisionComponent.class);
-            if (cc != null) {
-                cc.setCollided(false);
+            CollisionComponent collisionCP = e.getComponent(CollisionComponent.class);
+            if (collisionCP != null) {
+                collisionCP.setCollided(false);
             }
         }
 
