@@ -23,8 +23,6 @@ public class Movement implements IEntityProcessingService {
 
             float radians = (float) Math.toRadians(trans.getRotation());
 
-            System.out.println(movement.getSpeed());
-
             float deltaX = (float) Math.cos(radians) * movement.getSpeed();
             float deltaY = (float) Math.sin(radians) * movement.getSpeed();
 
@@ -34,6 +32,4 @@ public class Movement implements IEntityProcessingService {
 
         }
     }
-
-
 }

@@ -16,6 +16,7 @@
         <module name="ScoringService" />
         <module name="CommonBullet" />
         <module name="Common" />
+        <module name="SplitPackageModule" />
         <module name="Asteroid" />
         <module name="UI" />
         <module name="Star" />
